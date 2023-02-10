@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
+import {Switch, Route, BrowserRouter, useHistory, useParams} from 'react-router-dom'
+
 
 function App() {
   const [count, setCount] = useState(0);
+
+  const history = useHistory();
 
   useEffect(() => {
     fetch("/hello")
@@ -10,9 +14,18 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <h1>Page Count: {count}</h1>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Switch>
+          <Route path="/testing">
+            <h1>Test Route</h1>
+          </Route>
+          <Route path="/">
+            <h1>Page Count: {count}</h1>
+          </Route>
+        </Switch>
+      </div>
+    </BrowserRouter>
   );
 }
 
