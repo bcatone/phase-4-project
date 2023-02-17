@@ -65,6 +65,7 @@ function CreatePostForm({ user, tags, updateTags, handleAddPost }) {
   };
 
   const handleSubmitPostTags = (postId, tags) => {
+
     setIsLoading(true);
 
     const postTagData = {
@@ -121,7 +122,7 @@ function CreatePostForm({ user, tags, updateTags, handleAddPost }) {
     });
   };
 
-  if(isLoading) {
+  if (isLoading) {
     return (<Loading />)
   }
   return (

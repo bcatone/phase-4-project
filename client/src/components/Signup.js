@@ -77,10 +77,10 @@ function Signup({ updateUser }) {
           required
         />
       </div>
+      <p>
       {formData.password_confirmation &&
-      formData.password !== formData.password_confirmation
-        ? "Passwords do not match"
-        : null}
+      formData.password !== formData.password_confirmation ? "Passwords do not match" : null}
+      </p>
 
       <input type="submit" value="Sign Up" />
     </form>

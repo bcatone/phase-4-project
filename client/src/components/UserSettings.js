@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import UserChangePasswordForm from "./UserChangePasswordForm";
 
 import UserDeleteAccountForm from "./UserDeleteAccountForm";
+import UserInfoForm from "../UserInfoForm";
 
 function UserSettings({user, updateUser, handleLogOut}) {
 
@@ -17,6 +18,7 @@ function UserSettings({user, updateUser, handleLogOut}) {
 
     return (
         <div className="container">
+            <UserInfoForm user={user} updateUser={updateUser} />
             <UserChangePasswordForm user={user} updateUser={updateUser} />
             <UserDeleteAccountForm user={user} updateUser={updateUser} handleLogOut={handleLogOut} />
         </div>

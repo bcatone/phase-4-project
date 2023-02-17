@@ -16,6 +16,7 @@ import Login from "./Login";
 import Signup from "./Signup";
 import NavBar from "./NavBar";
 import PostContainer from "./PostContainer";
+import Post from "./Post";
 import CreatePostForm from "./CreatePostForm";
 import Home from "./Home";
 import UserHomePage from "./UserHomePage";
@@ -73,15 +74,18 @@ function App() {
           <Route path="/users/:id/settings">
             <UserSettings user={user} updateUser={updateUser} />
           </Route>
+          <Route path="user/:id/posts/:id/edit">
+            <EditPostForm user={user} tags={tags} updateTags={updateTags}/>
+          </Route>
           <Route path="/user/:id/posts/new">
             <CreatePostForm user={user} tags={tags} updateTags={updateTags}/>
-          </Route>
-          <Route path="user/:id/posts/edit">
-            <EditPostForm user={user} tags={tags} updateTags={updateTags}/>
           </Route>
           <Route path="/users/:id">
             <UserHomePage user={user} updateUser={updateUser} />
           </Route>
+          {/* <Route path="/posts/:id">
+            <Post user={user}/>
+          </Route> */}
           <Route path="/posts">
             <PostContainer user={user} tags={tags}/>
           </Route>

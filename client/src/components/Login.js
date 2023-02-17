@@ -3,12 +3,15 @@ import "../App.css";
 import React, { useState } from "react";
 import { Link, Redirect, useHistory } from 'react-router-dom'
 
+import Loading from "./Loading";
+
 function Login({ user, updateUser }) {
     const [formData, setFormData] = useState({
         username: "",
         password: ""
     });
     const [errors, setErrors] = useState([]);
+    const [isLoading, setIsLoading] = useState(false)
     const history = useHistory();
 
     if (user) return <Redirect to="/posts" />
@@ -20,6 +23,9 @@ function Login({ user, updateUser }) {
 
     const onSubmit = (e) => {
         e.preventDefault();
+
+        setIsLoading(true);
+
         const user = {
             username: formData.username,
             password: formData.password
@@ -34,18 +40,23 @@ function Login({ user, updateUser }) {
             if (resp.ok) {
                 resp.json().then( user => {
                     updateUser(user);
+                    setIsLoading(false);
                     history.push(`/users/${user.id}`)
                 })
             }
             else {
                 resp.json().then(json => {
-                    setErrors([json.errors])
+                    setErrors([json.errors]);
+                    setIsLoading(false);
                 })
             }
         })
 
     };
 
+    if (isLoading) {
+        return (<Loading />);
+    }
     return (
         <div className="container">
         <form onSubmit={onSubmit}>
@@ -60,7 +71,7 @@ function Login({ user, updateUser }) {
             </div>
             <input type="submit" value="Log in" />
         </form>
-        <Link to="users/reset_password">Forgot Password?</Link>
+        {/* <Link to="users/reset_password">Forgot Password?</Link> */}
         </div>
     );
 };

@@ -19,6 +19,8 @@ function UserChangePasswordForm({ user, updateUser }) {
   };
 
   const handleSubmitPasswordChange = (e) => {
+    e.preventDefault();
+    
     const passwordInfo = {
         current_password: "",
         new_password: "",
